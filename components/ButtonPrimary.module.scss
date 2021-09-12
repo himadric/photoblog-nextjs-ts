@@ -1,0 +1,27 @@
+@import '../styles/variables.scss';
+.btnPrimary {
+    display: inline-block;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border: 0px;
+    width: 120px;
+    text-align: center;
+    padding: 10px 0px;
+    transition: 0s;
+}
+
+.btnPrimary:hover {
+    display: inline-block;
+    background-color: $primary-color;
+    color: $secondary-color;
+    border: 0px;
+    padding: 10px 0px;
+    transition: 1s;
+}
+
+.btnContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

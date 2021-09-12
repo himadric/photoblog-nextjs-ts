@@ -1,0 +1,80 @@
+@import '../styles/variables.scss';
+.footer {
+    background-color: $footer-background-color;
+    color: $footer-font-color;
+    .heading {
+        font-size: $heading-font-size;
+    }
+    .footerGrid {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        display: grid;
+        grid-template-columns: [left] 60% [right] 40%;
+        grid-gap: 10px;
+        .aboutMe {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .aboutMeImage {
+                flex: 0 1 30%;
+            }
+            .aboutMeContent {
+                flex: 0 1 70%;
+            }
+            a {
+                line-height: 2.6em;
+                color: $footer-font-color;
+                text-decoration: underline;
+            }
+        }
+        .emailSubscription {
+            li {
+                padding-bottom: 5px;
+            }
+            a{
+                display: inline-block;
+                background-color: $primary-color;
+                color: $footer-font-color;
+                border: 0px;
+                width: 200px;
+                text-align: center;
+                padding: 3px 0px;
+                transition: 0s;
+            }
+            a:hover {
+                display: inline-block;
+                background-color: lighten($primary-color, 30%);
+                color: $footer-font-color;
+                border: 0px;
+                width: 200px;
+                text-align: center;
+                padding: 3px 0px;
+                transition: 1s;
+            }
+            input {
+                height: 30px;
+                width: 200px;
+            }
+        }
+        .footerSocial {
+            ul {
+                display: flex;
+                li {
+                    padding-right: 10px;
+                }
+            }
+            svg {
+                color: $footer-font-color;
+            }
+        }   
+    }
+}
+
+@media(max-width: 768px) {
+    .footer {
+        .footerGrid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+}

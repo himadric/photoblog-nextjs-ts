@@ -1,0 +1,33 @@
+@import '../styles/variables.scss';
+.blogTeaser {
+    border: 1px solid $nav-background-color;
+    margin-bottom: 20px;
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .blogTeaserContent {
+        padding: 0 20px;
+        h2 {
+            font-size: $heading-font-size;
+        }
+        hr {
+            margin: 10px 0px;
+        }
+        .userReaction {
+            display: flex;
+            justify-content: space-between;;
+            padding-bottom: 10px;
+            .leftIcons {
+                display: flex;
+                li {
+                    padding-right: 10px;
+                }
+            }
+            .redcolor {
+                color: red;
+            }
+        }
+    }
+}

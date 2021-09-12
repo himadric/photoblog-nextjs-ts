@@ -1,0 +1,104 @@
+@import '../styles/variables.scss';
+.container {
+    width: 90%;
+    max-width: 1100px;
+    padding: 0 30px;
+    margin: 0 auto;
+    overflow: auto;
+  }
+  
+.mainNav {
+    background-color: $primary-color;
+    height: 60px;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;    
+    }
+    ul {
+        display: flex;
+    }
+    li {
+        padding: 15px;
+    }
+    a {
+        color: $secondary-color;
+        font-size: $small-font-size;
+    }
+    .menu a:hover {
+        border-bottom: 2px solid $secondary-color;
+    }
+    .socialMenu a {
+        font-size: $normal-font-size;
+    }
+}
+
+.menuBtn {
+    position: absolute;
+    color: $secondary-color;
+    margin-top: 15px;
+    margin-left: 20px;
+    z-index: 1001;
+    display: none;
+}
+
+@media(max-width: 768px) {
+    .mainNav {
+        justify-content: flex-end;
+        position: relative;
+        .container {
+            padding-right: 0px;
+            display: flex;
+            justify-content: flex-end;
+            ul {
+                margin-top: 5px;
+            }
+        }
+        li {
+            padding-right: 0px;
+        }
+    }
+    /* Hamburger menu*/
+    .menuBtn {
+        color: $secondary-color;
+        display: inline-block;
+        span.barBtn.hide {
+            display: none;
+        }
+        span.closeBtn.hide {
+            display: none;
+        }
+    }
+
+    .mainNav ul.menu {
+        position: absolute;
+        z-index: 1001;
+        display: inline;
+        top: 0;
+        left: 0;
+        height: 300px;
+        margin-top: 60px;
+        margin-left: 0px;
+        background: $primary-color;
+        width: 50%;
+        opacity: 0.9;
+        transform: translateX(-500px);
+    }
+
+    .mainNav ul.menu li {
+        padding: 10px;
+        border-bottom: 1px solid $secondary-color;
+    }
+
+    .mainNav ul.menu li:last-child {
+        border-bottom: 0px;
+    }
+
+    .mainNav ul.menu.show {
+        transform: translateX(-1px);
+    }
+}

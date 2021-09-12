@@ -1,0 +1,362 @@
+{
+  "banner": {
+    "title": "Photography Blog",
+    "heading": "Taking Photos",
+    "subHeading": "Let's talk about photography and camera",
+    "image": "/img/banner_large.jpg",
+    "imageAlt": "Banner"
+  },
+  "about": {
+    "title": "About",
+    "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex.",
+    "image": "/img/himadri.jpg",
+    "imgAlt": "Himadri Chakrabarti",
+    "link": "/about",
+    "buttonText": "About"
+  },
+  "menus": [
+    {
+      "id": 1,
+      "parentId": "",
+      "menuCaption": "Home",
+      "menuLink": "/"
+    },
+    {
+      "id": 2,
+      "parentId": "",
+      "menuCaption": "Photography",
+      "menuLink": "/photography"
+    },
+    {
+      "id": 3,
+      "parentId": "",
+      "menuCaption": "Phographer",
+      "menuLink": "/photographer"
+    },
+    {
+      "id": 4,
+      "parentId": "",
+      "menuCaption": "Camera",
+      "menuLink": "/camera"
+    },
+    {
+      "id": 5,
+      "parentId": "",
+      "menuCaption": "Camera Designer",
+      "menuLink": "/camera-designer"
+    },
+    {
+      "id": 6,
+      "parentId": "",
+      "menuCaption": "About",
+      "menuLink": "/about"
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "image": "/img/photography.jpg",
+      "imgAlt": "Photography",
+      "link": "/photography",
+      "buttonText": "Photography"
+    },
+    {
+      "id": 2,
+      "image": "/img/photographer.jpg",
+      "imgAlt": "Photographer",
+      "link": "/photographer",
+      "buttonText": "Photographer"
+    },
+    {
+      "id": 3,
+      "image": "/img/camera.jpg",
+      "imgAlt": "Camera",
+      "link": "/camera",
+      "buttonText": "Camera"
+    },
+    {
+      "id": 4,
+      "image": "/img/designer.jpg",
+      "imgAlt": "Designer",
+      "link": "/camera-designer",
+      "buttonText": "Designer"
+    }
+  ],
+  "blogs": [
+    {
+      "id": 1,
+      "collectionName": "Recent",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/photoblog1.jpg",
+      "imgAlt": "photoblog1",
+      "link": "/photography/1/",
+      "title": "Short walk at Short North District, Columbus",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 3,
+      "noOfComments": 0,
+      "noOfFavorites": 3
+    },
+    {
+      "id": 2,
+      "collectionName": "Recent",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/yosemite.jpg",
+      "imgAlt": "photoblog1",
+      "link": "/photography/2/",
+      "title": "Yosemite",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 6,
+      "noOfComments": 0,
+      "noOfFavorites": 1
+    },
+    {
+      "id": 3,
+      "collectionName": "Recent",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/dublin.jpg",
+      "imgAlt": "photoblog1",
+      "link": "/photography/3/",
+      "title": "Dublin walking bridge",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 4,
+      "collectionName": "Photography",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/photoblog1.jpg",
+      "imgAlt": "Short North District",
+      "link": "/photography/4/",
+      "title": "Short walk at Short North District, Columbus",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 5,
+      "collectionName": "Photography",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/yosemite.jpg",
+      "imgAlt": "Yosemite",
+      "link": "/photography/5/",
+      "title": "Yosemite",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 6,
+      "collectionName": "Photography",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/dublin.jpg",
+      "imgAlt": "Dublin walking bridge",
+      "link": "/photography/6/",
+      "title": "Dublin walking bridge",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 7,
+      "collectionName": "Photographer",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/vivian.jpg",
+      "imgAlt": "Vivian Maier",
+      "link": "/photographer/7/",
+      "title": "Vivian Maier",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 8,
+      "collectionName": "Photographer",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/alex.jpg",
+      "imgAlt": "Alex Webb",
+      "link": "/photographer/8/",
+      "title": "Alex Webb",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 9,
+      "collectionName": "Photographer",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/Elliot.jpg",
+      "imgAlt": "Elliot Erwitt",
+      "link": "/photographer/9/",
+      "title": "Elliot Erwitt",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 10,
+      "collectionName": "Camera",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/minolta-hi-matic-7sii.jpg",
+      "imgAlt": "Minolta Hi Matic 7SII",
+      "link": "/camera/10/",
+      "title": "Minolta Hi Matic 7SII",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 11,
+      "collectionName": "Camera",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/rolliea110.jpg",
+      "imgAlt": "Rollei A110",
+      "link": "/camera/11/",
+      "title": "Rollei A110",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 12,
+      "collectionName": "Camera",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/petri.jpg",
+      "imgAlt": "Petri 35 Color Compact",
+      "link": "/camera/12/",
+      "title": "Petri 35 Color Compact",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 13,
+      "collectionName": "Camera Designer",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/Oskar-Barnack.jpg",
+      "imgAlt": "Oskar Barnack",
+      "link": "/camera-designer/13/",
+      "title": "Oskar Barnack",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 14,
+      "collectionName": "Camera Designer",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/maitani.jpg",
+      "imgAlt": "Yoshihisa Maitani",
+      "link": "/camera-designer/14/",
+      "title": "Yoshihisa Maitani",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    },
+    {
+      "id": 15,
+      "collectionName": "Camera Designer",
+      "publishDate": "7th June, 2021",
+      "readTime": "3 min",
+      "image": "/img/Heinz-Waaske.jpg",
+      "imgAlt": "Heinz Waaske",
+      "link": "/camera-designer/15/",
+      "title": "Heinz Waaske",
+      "shortDescription": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "body": "Cupidatat in veniam tempor minim adipisicing excepteur sint. Exercitation eu dolore in aliquip mollit cupidatat dolor fugiat.",
+      "noOfViews": 10,
+      "noOfComments": 0,
+      "noOfFavorites": 2
+    }
+  ],
+  "pageIntro": [
+    {
+      "id": 1,
+      "pageName": "Home Page Intro",
+      "title": "",
+      "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex."
+    },
+    {
+      "id": 2,
+      "pageName": "Photography",
+      "title": "Photography",
+      "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex."
+    },
+    {
+      "id": 3,
+      "pageName": "Photographer",
+      "title": "Photographer",
+      "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex."
+    },
+    {
+      "id": 4,
+      "pageName": "Camera",
+      "title": "Camera",
+      "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex."
+    },
+    {
+      "id": 5,
+      "pageName": "Camera Designer",
+      "title": "Camera Designer",
+      "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex."
+    },
+    {
+      "id": 6,
+      "pageName": "About",
+      "title": "About Me",
+      "body": "Consequat deserunt commodo officia in excepteur tempor occaecat et in. Mollit do nisi incididunt elit officia labore et enim id magna tempor deserunt cupidatat aute. Id laboris ut ullamco ut ad laboris minim occaecat dolor. Proident et laborum adipisicing velit amet tempor aute fugiat dolore dolore cupidatat amet labore et. Laborum adipisicing qui exercitation exercitation et incididunt consequat excepteur pariatur adipisicing deserunt nulla. Aliqua nisi occaecat enim quis quis. Amet nulla enim nostrud ex aliqua enim excepteur irure incididunt irure consequat aliquip ex."
+    },
+    {
+      "id": 7
+    }
+  ],
+  "footer": {
+    "aboutMeHeading": "About Me",
+    "aboutMeQuote": "My name is Himadri Chakrabarti. I am a photography enthusiast. I live in Columbus, Ohio.",
+    "aboutMeImageLink": "/img/about.jpg",
+    "copyright": "© Taking Photos by Himadri Chakrabarti",
+    "subscriptionHeading": "Join My Mailing List",
+    "emailLabel": "Email*",
+    "subscriptionButtonCaption": "Subscribe Now"
+  }
+}

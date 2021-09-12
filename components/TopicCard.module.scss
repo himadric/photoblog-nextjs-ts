@@ -1,0 +1,8 @@
+@import '../styles/variables.scss';
+.topicCard {
+    position: relative;
+    text-align: center;
+    font-size: $medium-font-size;
+    flex: 0 1 220px;
+    margin: 10px;
+}

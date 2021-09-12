@@ -3,20 +3,43 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
   },
   "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
+    "@contentful/rich-text-html-renderer": "^15.3.4",
+    "@sitecore/sc-contenthub-webclient-sdk": "^1.1.1",
+    "contentful": "^8.5.6",
+    "contentful-management": "^7.36.1",
+    "contentful-typescript-codegen": "^3.2.2",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "form-data": "^4.0.0",
+    "graphql": "^15.5.3",
+    "https-proxy-agent": "^5.0.0",
+    "memory-cache": "^0.2.0",
     "next": "11.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "reflect-metadata": "^0.1.13",
+    "sass": "^1.38.0",
+    "sharp": "^0.29.1",
+    "tsyringe": "^4.6.0"
   },
   "devDependencies": {
+    "@types/memory-cache": "^0.2.1",
+    "@types/node": "^16.7.1",
     "@types/react": "17.0.18",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
+    "prettier": "^2.3.2",
     "typescript": "4.3.5"
   }
 }

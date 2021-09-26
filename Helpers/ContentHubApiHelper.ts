@@ -329,12 +329,14 @@ export default class ContentHubApiHelper implements IApiHelper {
 				await client
 			).querying.queryAsync(relationQuery);
 			await sleep(sleepInterval);
-			menuItems = relation.items.map((mainMenuItem) => ({
-				id: mainMenuItem.identifier,
-				parentId: mainMenuItem?.getPropertyValue("851fb_Parent_Id"),
-				menuCaption: mainMenuItem?.getPropertyValue("851fb_MenuCaption"),
-				menuLink: mainMenuItem?.getPropertyValue("851fb_MenuLink"),
-			}));
+			menuItems = relation.items
+				.map((mainMenuItem) => ({
+					id: mainMenuItem.identifier,
+					parentId: mainMenuItem?.getPropertyValue("851fb_Parent_Id"),
+					menuCaption: mainMenuItem?.getPropertyValue("851fb_MenuCaption"),
+					menuLink: mainMenuItem?.getPropertyValue("851fb_MenuLink"),
+				}))
+				.sort((a, b) => (a.id < b.id ? 1 : -1));
 			cacheData.put(getMainMenuItemsCacheKey, menuItems, cacheDuration);
 		}
 		return menuItems;
@@ -464,7 +466,6 @@ export default class ContentHubApiHelper implements IApiHelper {
 				noOfComments: 0,
 				noOfFavorites: 3,
 			};
-			console.log(blog);
 			cacheData.put(cacheKey, blog, cacheDuration);
 			return blog;
 		}

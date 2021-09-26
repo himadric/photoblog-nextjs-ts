@@ -8,7 +8,7 @@ import { container } from "tsyringe";
 import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import AboutPorps from "../models/AboutProps";
-import ApiHelper from "./ContentFulApiHelper";
+import ApiHelper from "./ContentHubApiHelper";
 
 container.register("IApiHelper", {
 	useClass: ApiHelper,
@@ -99,6 +99,7 @@ export default class GetStaticPropHelper {
 
 	static async getBlogListStaticPaths(collectionName: string) {
 		try {
+			console.log("getBlogListStaticPaths " + collectionName);
 			const blogList = await pageComponentService.getBlogs(collectionName);
 			const paths = blogList.map((blogitem) => ({
 				params: { slug: blogitem.id.toString() },
@@ -115,6 +116,8 @@ export default class GetStaticPropHelper {
 		context: GetStaticPropsContext<ParsedUrlQuery>
 	) {
 		try {
+			console.log("getBlogPageStaticProps");
+			console.log(context);
 			const params = context.params!;
 			const mainMenuItems = await pageLayoutService.getMainMenuItems();
 			const footer = await pageLayoutService.getFooter();

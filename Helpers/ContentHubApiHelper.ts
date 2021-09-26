@@ -392,7 +392,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 					blog.getPropertyValue("Content.PublishedOn") as string
 				),
 				readtime: blog.getPropertyValue("Blog_ReadTime"),
-				link: ["/", contentCollectionName, "/", blog.id].join(""),
+				link: ["/", contentCollectionName.toLowerCase(), "/", blog.id].join(""),
 				title: blog.getPropertyValue("Blog_Title"),
 				shortDescription: blog.getPropertyValue("Blog_Quote"),
 				body: blog.getPropertyValue("Blog_Body"),
@@ -464,6 +464,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 				noOfComments: 0,
 				noOfFavorites: 3,
 			};
+			console.log(blog);
 			cacheData.put(cacheKey, blog, cacheDuration);
 			return blog;
 		}

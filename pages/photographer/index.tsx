@@ -30,6 +30,6 @@ const Photographer: NextPage<BlogListPorps> = (props: BlogListPorps) => {
 export default Photographer;
 
 export const getStaticProps: GetStaticProps<BlogListPorps> = async (context) => { // must be async
-  return await GetStaticPropHelper.getBlogListPageStaticProps("Photographer", "Photographer");
+  return await GetStaticPropHelper.getBlogListPageStaticProps("Photographer Page Intro", "Photographer");
 };
 

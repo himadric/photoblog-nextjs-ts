@@ -30,6 +30,6 @@ const CameraDsigner: NextPage<BlogListPorps> = (props: BlogListPorps) => {
 export default CameraDsigner;
 
 export const getStaticProps: GetStaticProps<BlogListPorps> = async (context) => { // must be async
-  return await GetStaticPropHelper.getBlogListPageStaticProps("Camera Designer", "Camera Designer");
+  return await GetStaticPropHelper.getBlogListPageStaticProps("Camera Designer Page Intro", "Camera Designer");
 };
 

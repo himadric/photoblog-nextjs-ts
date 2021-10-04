@@ -21,17 +21,18 @@ const getFooterCacheKey: string = "getFooter";
 
 const cacheDuration = 1000 * Number(process.env.CONTENT_CACHE_DURATION);
 
-const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
+const fetchUrl = `https://edge-beta.sitecorecloud.io/api/graphql/v1`;
 
-const previewOption: boolean =
-	process.env.CONTENTFUL_DELIVERY_API_ACCESS_TOKEN === "false" ||
-	process.env.CONTENTFUL_DELIVERY_API_ACCESS_TOKEN === undefined
-		? false
-		: true;
+// const previewOption: boolean =
+// 	process.env.XEDGE_PREVIEW_OPTION === "false" ||
+// 	process.env.XEDGE_PREVIEW_OPTION === undefined
+// 		? false
+// 		: true;
 
-const accessToken = previewOption
-	? process.env.CONTENTFUL_PREVIEW_API_ACCESS_TOKEN
-	: process.env.CONTENTFUL_DELIVERY_API_ACCESS_TOKEN;
+// const apiKEy = previewOption
+// 	? process.env.XEDGE_DELIVERY_API_KEY
+// 	: process.env.XEDGE_PREVIEW_API_KEY;
+const apiKEy = process.env.XEDGE_DELIVERY_API_KEY;
 
 function formatDate(datetime: string) {
 	var options = {
@@ -43,14 +44,14 @@ function formatDate(datetime: string) {
 	var date = new Date(datetime);
 	return date.toLocaleDateString("en-US", options);
 }
-export default class ContentFulApiHelper implements IApiHelper {
+export default class XEdgeApiHelper implements IApiHelper {
 	private async getFetchOptions(query: string) {
 		const fetchOptions = {
 			method: "POST",
 			//Uncomment below line to see API requestion in Fiddler
 			//agent: HttpsProxyAgent("http://127.0.0.1:8888"),
 			headers: {
-				Authorization: "Bearer " + accessToken,
+				"X-GQL-Token": apiKEy as string,
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ query }),
@@ -64,15 +65,13 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return topics;
 			} else {
 				const query: string = `query {
-					topicCollection(preview: ${previewOption}, order: [id_ASC]) {
-					  items {
+					allM_Content_6b391 {
+					  results {
 						id
-						image {
-						  url
-						}
-						imageAlt
-						link
-						buttonText
+						_b391_Image
+						_b391_ImageAlt
+						_b391_Link
+						_b391_ButtonText
 					  }
 					}
 				  }`;
@@ -82,17 +81,15 @@ export default class ContentFulApiHelper implements IApiHelper {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { topicCollection } = res.data;
-				topics = topicCollection.items.map(
-					//Here is an example of why we cannot use ContentFul types with GraphQL queries
-					//https://github.com/intercom/contentful-typescript-codegen/issues/17
+				const { results } = res.data.allM_Content_6b391;
+				topics = results.map(
 					(topic: any) =>
 						({
 							id: topic.id,
-							image: topic.image.url,
-							imageAlt: topic.imageAlt,
-							link: topic.link,
-							buttonText: topic.buttonText,
+							image: topic._b391_Image,
+							imageAlt: topic._b391_ImageAlt,
+							link: topic._b391_Link,
+							buttonText: topic._b391_ButtonText,
 						} as Topic)
 				);
 				cacheData.put(getTopicsCacheKey, topics, cacheDuration);
@@ -110,15 +107,14 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return banner;
 			} else {
 				const query: string = `query {
-					bannerCollection(preview: ${previewOption}) {
-					  items {
-						image {
-							url
-						  }
-						imageAlt
-						title
-						heading
-						subHeading
+					allM_Content_d4b32 {
+					  results {
+						id
+						d4b32_Banner_Title
+						d4b32_Banner_Heading
+						d4b32_Banner_Sub_Heading
+						d4b32_Banner_Image
+						d4b32_Banner_Image_Alt
 					  }
 					}
 				  }`;
@@ -128,14 +124,14 @@ export default class ContentFulApiHelper implements IApiHelper {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { items } = res.data.bannerCollection;
-				const item = items[0];
+				const { results } = res.data.allM_Content_d4b32;
+				const item = results[0];
 				banner = {
-					title: item.title,
-					heading: item.heading,
-					subHeading: item.subHeading,
-					image: item.image.url,
-					imageAlt: item.imageAlt,
+					title: item.d4b32_Banner_Title,
+					heading: item.d4b32_Banner_Heading,
+					subHeading: item.d4b32_Banner_Sub_Heading,
+					image: item.d4b32_Banner_Image,
+					imageAlt: item.d4b32_Banner_Image_Alt,
 				} as Banner;
 				cacheData.put(getBannerCacheKey, banner, cacheDuration);
 				return banner;
@@ -152,17 +148,12 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return about;
 			} else {
 				const query: string = `query {
-					aboutCollection(preview: ${previewOption}) {
-					  items {
-						title
-						body {
-						  json
-						}
-						image {
-						  url
-						}
-						imageAlt
-						link
+					allM_Content_Blog(where: {content_Name_eq: "About"}) {
+					  results {
+						blog_Title
+						blog_Body
+						blog_CoverImageLink
+						blog_CoverImageAlt
 					  }
 					}
 				  }`;
@@ -172,14 +163,14 @@ export default class ContentFulApiHelper implements IApiHelper {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { items } = res.data.aboutCollection;
-				const item = items[0];
+				const { results } = res.data.allM_Content_Blog;
+				const item = results[0];
 				about = {
-					title: item.title,
-					body: documentToHtmlString(item.body.json),
-					image: item.image.url,
-					imageAlt: item.imageAlt,
-					link: item.link,
+					title: item.blog_Title,
+					body: item.blog_Body,
+					image: item.blog_CoverImageLink,
+					imageAlt: item.blog_CoverImageAlt,
+					link: "/about",
 				};
 				cacheData.put(getAboutContentCacheKey, about, cacheDuration);
 				return about;
@@ -196,12 +187,12 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return menuItems;
 			} else {
 				const query: string = `query {
-					menuCollection(preview: ${previewOption}, order: [id_ASC]) {
-					  items {
+					allM_Content_851fb {
+					  results {
 						id
-						parentId
-						caption
-						link
+						_51fb_Parent_Id
+						_51fb_MenuCaption
+						_51fb_MenuLink
 					  }
 					}
 				  }`;
@@ -211,14 +202,14 @@ export default class ContentFulApiHelper implements IApiHelper {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { items } = res.data.menuCollection;
-				menuItems = items.map(
+				const { results } = res.data.allM_Content_851fb;
+				menuItems = results.map(
 					(menuItem: any) =>
 						({
 							id: menuItem.id,
-							parentId: menuItem.parentId,
-							menuCaption: menuItem.caption,
-							menuLink: menuItem.link,
+							parentId: menuItem._51fb_Parent_Id,
+							menuCaption: menuItem._51fb_MenuCaption,
+							menuLink: menuItem._51fb_MenuLink,
 						} as Menu)
 				);
 				cacheData.put(getMainMenuItemsCacheKey, menuItems, cacheDuration);
@@ -239,35 +230,26 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return blogs;
 			} else {
 				const query: string = `query {
-					blogCategoryCollection(preview: ${previewOption}, where: {
-					name: "${collectionName}"
-				  }) {
-					items {
-					  name
-					  blogsCollection {
-						items {
-						  sys {
-							id
-						  }
-						}
+					allM_Content_Blog(where: {blog_Title_eq: "Yosemite"}) {
+					  results {
+						id
 					  }
 					}
-				  }
-				}`;
+				  }`;
 				const fetchOptions = await this.getFetchOptions(query);
 				const response = await fetch(fetchUrl, fetchOptions);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { items } =
-					res.data.blogCategoryCollection.items[0].blogsCollection;
+				const { results } = res.data.allM_Content_Blog;
 				blogs = await Promise.all(
-					items.map(
-						//Here is an example of why we cannot use ContentFul types with GraphQL queries
-						//https://github.com/intercom/contentful-typescript-codegen/issues/17
+					results.map(
 						async (item: any) =>
-							(await this.getBlogBySysId(item.sys.id)) as Blog
+							(await this.getBlogByCollectionAndId(
+								collectionName,
+								item.id
+							)) as Blog
 					)
 				);
 				cacheData.put(cacheKey, blogs, cacheDuration);
@@ -278,23 +260,21 @@ export default class ContentFulApiHelper implements IApiHelper {
 		}
 	}
 
-	private async getBlogBySysId(sysId: string): Promise<Blog> {
+	private async getBlogByCollectionAndId(
+		collectionName: string,
+		id: string
+	): Promise<Blog> {
 		try {
 			const query: string = `query {
-				blog(preview: ${previewOption}, id: "${sysId}") {
+				m_Content_Blog(id: "${id}") {
 				  id
-				  title
-				  shortDescription
-				  body {
-					json
-				  }
-				  image {
-					url
-				  }
-				  link
-				  imageAlt
-				  publishDate
-				  readTime
+				  blog_Title
+				  blog_Quote
+				  blog_Body
+				  blog_CoverImageLink
+				  blog_CoverImageAlt
+				  content_PublishedOn
+				  blog_ReadTime
 				}
 			  }`;
 			const fetchOptions = await this.getFetchOptions(query);
@@ -304,15 +284,15 @@ export default class ContentFulApiHelper implements IApiHelper {
 			}
 			const res = await response.json();
 			const blog = {
-				id: res.data.blog.id,
-				image: res.data.blog.image.url,
-				imageAlt: res.data.blog.imageAlt,
-				publishDate: formatDate(res.data.blog.publishDate),
-				readtime: res.data.blog.readTime,
-				link: res.data.blog.link,
-				title: res.data.blog.title,
-				shortDescription: res.data.blog.shortDescription,
-				body: documentToHtmlString(res.data.blog.body.json),
+				id: res.data.m_Content_Blog.id,
+				image: res.data.m_Content_Blog.blog_CoverImageLink,
+				imageAlt: res.data.m_Content_Blog.blog_CoverImageAlt,
+				publishDate: formatDate(res.data.m_Content_Blog.content_PublishedOn),
+				readtime: res.data.m_Content_Blog.blog_ReadTime,
+				link: `/${collectionName.toLowerCase()}/${id}`,
+				title: res.data.m_Content_Blog.blog_Title,
+				shortDescription: res.data.m_Content_Blog.blog_Quote,
+				body: res.data.m_Content_Blog.blog_Body,
 				noOfViews: 3,
 				noOfComments: 4,
 				noOfFavorites: 0,
@@ -322,62 +302,42 @@ export default class ContentFulApiHelper implements IApiHelper {
 			throw new Error(`Failed to get Blog. Error: ${e.message}`);
 		}
 	}
+
 	async getBlogById(id: string): Promise<Blog> {
 		try {
-			const cacheKey = [getBlogByIdCacheKey, id].join("");
-			let blog = cacheData.get(cacheKey);
-			if (blog) {
-				return blog;
-			} else {
-				const query: string = `query {
-					blogCollection(preview: ${previewOption}, where: {
-					  id: "${id}"
-					}) {
-					  items {
-						sys {
-						  id
-						}
-						id
-						title
-						shortDescription
-						body {
-						  json
-						}
-						image {
-						  url
-						}
-						imageAlt
-						link
-						publishDate
-						readTime
-					  }
-					}
-				  }`;
-				const fetchOptions = await this.getFetchOptions(query);
-				const response = await fetch(fetchUrl, fetchOptions);
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+			const query: string = `query {
+				m_Content_Blog(id: "${id}") {
+				  id
+				  blog_Title
+				  blog_Quote
+				  blog_Body
+				  blog_CoverImageLink
+				  blog_CoverImageAlt
+				  content_PublishedOn
+				  blog_ReadTime
 				}
-				const res = await response.json();
-				const { items } = res.data.blogCollection;
-				const item = items[0];
-				blog = {
-					id: item.id,
-					image: item.image.url,
-					imageAlt: item.imageAlt,
-					publishDate: formatDate(item.publishDate),
-					readtime: item.readTime,
-					link: item.link,
-					title: item.title,
-					shortDescription: item.shortDescription,
-					body: documentToHtmlString(item.body.json),
-					noOfViews: 3,
-					noOfComments: 4,
-					noOfFavorites: 0,
-				} as Blog;
-				cacheData.put(cacheKey, blog, cacheDuration);
-				return blog;
+			  }`;
+			const fetchOptions = await this.getFetchOptions(query);
+			const response = await fetch(fetchUrl, fetchOptions);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
 			}
+			const res = await response.json();
+			const blog = {
+				id: res.data.m_Content_Blog.id,
+				image: res.data.m_Content_Blog.blog_CoverImageLink,
+				imageAlt: res.data.m_Content_Blog.blog_CoverImageAlt,
+				publishDate: formatDate(res.data.m_Content_Blog.content_PublishedOn),
+				readtime: res.data.m_Content_Blog.blog_ReadTime,
+				link: "/photography",
+				title: res.data.m_Content_Blog.blog_Title,
+				shortDescription: res.data.m_Content_Blog.blog_Quote,
+				body: res.data.m_Content_Blog.blog_Body,
+				noOfViews: 3,
+				noOfComments: 4,
+				noOfFavorites: 0,
+			} as Blog;
+			return blog;
 		} catch (e: any) {
 			throw new Error(`Failed to get Blog. Error: ${e.message}`);
 		}
@@ -391,16 +351,12 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return pageIntro;
 			} else {
 				const query: string = `query {
-					pageIntroCollection(preview: ${previewOption}, where: {
-					  pageName: "${pageName}"
-					}) {
-					  items {
+					allM_Content_Blog(where:{content_Name_eq:"${pageName}"}) {
+					  results {
 						id
-						pageName
-						title
-						body {
-						  json
-						}
+						content_Name
+						blog_Title
+						blog_Body
 					  }
 					}
 				  }`;
@@ -410,13 +366,13 @@ export default class ContentFulApiHelper implements IApiHelper {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { items } = res.data.pageIntroCollection;
-				const item = items[0];
+				const { results } = res.data.allM_Content_Blog;
+				const item = results[0];
 				pageIntro = {
 					id: item.id,
-					pageName: item.pageName,
-					title: item.title,
-					body: documentToHtmlString(item.body.json),
+					pageName: item.content_Name,
+					title: item.blog_Title,
+					body: item.blog_Body,
 				} as PageIntro;
 				cacheData.put(cacheKey, pageIntro, cacheDuration);
 				return pageIntro;
@@ -433,17 +389,16 @@ export default class ContentFulApiHelper implements IApiHelper {
 				return footer;
 			} else {
 				const query: string = `query {
-					footerCollection(preview: ${previewOption}) {
-					  items {
-						aboutMeHeading
-						aboutMeQuote
-						aboutMeImage {
-						  url
-						}
-						copyright
-						subscriptionHeading
-						emailLabel
-						subscriptionButtonCaption
+					allM_Content_13de7 {
+						  results{
+						id
+						_3de7_AboutMeHeading
+						_3de7_AboutMeQuote
+						_3de7_AboutMeImageLink
+						_3de7_Copyright
+						_3de7_SubscriptionHeading
+						_3de7_EmailLabel
+						_3de7_SubscriptionButtonCaption
 					  }
 					}
 				  }`;
@@ -453,16 +408,16 @@ export default class ContentFulApiHelper implements IApiHelper {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const res = await response.json();
-				const { items } = res.data.footerCollection;
-				const item = items[0];
+				const { results } = res.data.allM_Content_13de7;
+				const item = results[0];
 				footer = {
-					aboutMeHeading: item.aboutMeHeading,
-					aboutMeQuote: item.aboutMeQuote,
-					aboutMeImageLink: item.aboutMeImage.url,
-					copyright: item.copyright,
-					subscriptionHeading: item.subscriptionHeading,
-					subscriptionButtonCaption: item.subscriptionButtonCaption,
-					emailLabel: item.emailLabel,
+					aboutMeHeading: item._3de7_AboutMeHeading,
+					aboutMeQuote: item._3de7_AboutMeQuote,
+					aboutMeImageLink: item._3de7_AboutMeImageLink,
+					copyright: item._3de7_Copyright,
+					subscriptionHeading: item._3de7_SubscriptionHeading,
+					subscriptionButtonCaption: item._3de7_SubscriptionButtonCaption,
+					emailLabel: item._3de7_EmailLabel,
 				} as Footer;
 				cacheData.put(getFooterCacheKey, footer, cacheDuration);
 				return footer;

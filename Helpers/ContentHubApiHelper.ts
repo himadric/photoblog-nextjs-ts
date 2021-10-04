@@ -56,7 +56,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const topics = await this.getTopicCardsFromContentHub();
 			return topics;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Topics. Error: ${e.message}`);
 		}
 	}
@@ -65,7 +65,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const banner = await this.getBannerFromContentHub();
 			return banner;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Banner. Error: ${e.message}`);
 		}
 	}
@@ -74,7 +74,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const about = await this.getAboutFromContentHub();
 			return about;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get About content. Error: ${e.message}`);
 		}
 	}
@@ -83,7 +83,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const menus = await this.getMainMenuItemsFromContentHub();
 			return menus;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Menu. Error: ${e.message}`);
 		}
 	}
@@ -94,7 +94,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 				collectionName
 			);
 			return blogs;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Blogs. Error: ${e.message}`);
 		}
 	}
@@ -103,7 +103,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const blog = await this.getBlogByIdFromContentHub(id);
 			return blog;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Blog. Error: ${e.message}`);
 		}
 	}
@@ -112,7 +112,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const pageIntro = await this.getPageIntroFromContentHub(pageName);
 			return pageIntro;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get PageIntro. Error: ${e.message}`);
 		}
 	}
@@ -121,7 +121,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 		try {
 			const footer = await this.getFooterFromContentHub();
 			return footer;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Footer. Error: ${e.message}`);
 		}
 	}
@@ -329,13 +329,16 @@ export default class ContentHubApiHelper implements IApiHelper {
 				await client
 			).querying.queryAsync(relationQuery);
 			await sleep(sleepInterval);
-			menuItems = relation.items
-				.map((mainMenuItem) => ({
-					id: mainMenuItem.identifier,
-					parentId: mainMenuItem?.getPropertyValue("851fb_Parent_Id"),
-					menuCaption: mainMenuItem?.getPropertyValue("851fb_MenuCaption"),
-					menuLink: mainMenuItem?.getPropertyValue("851fb_MenuLink"),
-				}))
+			const menuItems = relation.items
+				.map(
+					(mainMenuItem) =>
+						({
+							id: mainMenuItem.identifier,
+							parentId: mainMenuItem?.getPropertyValue("851fb_Parent_Id"),
+							menuCaption: mainMenuItem?.getPropertyValue("851fb_MenuCaption"),
+							menuLink: mainMenuItem?.getPropertyValue("851fb_MenuLink"),
+						} as Menu)
+				)
 				.sort((a, b) => (a.id < b.id ? 1 : -1));
 			cacheData.put(getMainMenuItemsCacheKey, menuItems, cacheDuration);
 		}

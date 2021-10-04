@@ -8,7 +8,7 @@ import { container } from "tsyringe";
 import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import AboutPorps from "../models/AboutProps";
-import ApiHelper from "./ContentHubApiHelper";
+import ApiHelper from "./XEdgeApiHelper";
 
 container.register("IApiHelper", {
 	useClass: ApiHelper,
@@ -45,7 +45,7 @@ export default class GetStaticPropHelper {
 				props,
 				revalidate: 3600,
 			};
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(
 				`${introName} page static generation failed. Error: ${e.message}`
 			);
@@ -65,7 +65,7 @@ export default class GetStaticPropHelper {
 				props,
 				revalidate: 3600,
 			};
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(
 				`About page static generation failed. Error: ${e.message}`
 			);
@@ -90,7 +90,7 @@ export default class GetStaticPropHelper {
 				props,
 				revalidate: 3600,
 			};
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(
 				`${introName} page static generation failed. Error: ${e.message}`
 			);
@@ -104,7 +104,7 @@ export default class GetStaticPropHelper {
 				params: { slug: blogitem.id.toString() },
 			}));
 			return { paths, fallback: "blocking" };
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(
 				`${collectionName} static path generation failed. Error: ${e.message}`
 			);
@@ -130,7 +130,7 @@ export default class GetStaticPropHelper {
 				props,
 				revalidate: 3600,
 			};
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(
 				`Blog page static generation failed. Error: ${e.message}`
 			);

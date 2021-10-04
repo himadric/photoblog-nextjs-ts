@@ -14,7 +14,7 @@ export default class PageComponentService {
 		try {
 			const banner = await this.apiHelper.getBanner();
 			return banner;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Banner. Error: ${e.message}`);
 		}
 	}
@@ -22,7 +22,7 @@ export default class PageComponentService {
 		try {
 			const about = await this.apiHelper.getAboutContent();
 			return about;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get About. Error: ${e.message}`);
 		}
 	}
@@ -30,7 +30,7 @@ export default class PageComponentService {
 		try {
 			const pageIntro = await this.apiHelper.getPageIntro(pageName);
 			return pageIntro;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get PageIntro. Error: ${e.message}`);
 		}
 	}
@@ -38,7 +38,7 @@ export default class PageComponentService {
 		try {
 			const topics = await this.apiHelper.getTopics();
 			return topics;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get topics. Error: ${e.message}`);
 		}
 	}
@@ -46,7 +46,7 @@ export default class PageComponentService {
 		try {
 			const blogs = await this.apiHelper.getBlogs(collectionName);
 			return blogs;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get blogs. Error: ${e.message}`);
 		}
 	}
@@ -54,7 +54,7 @@ export default class PageComponentService {
 		try {
 			const blog = await this.apiHelper.getBlogById(id);
 			return blog;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Blog. Error: ${e.message}`);
 		}
 	}

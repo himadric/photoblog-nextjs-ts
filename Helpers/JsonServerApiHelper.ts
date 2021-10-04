@@ -33,7 +33,7 @@ export default class ApiHelper implements IApiHelper {
 		try {
 			const topics = await this.fetchData<Topic[]>("topics");
 			return topics;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Topics. Error: ${e.message}`);
 		}
 	}
@@ -42,7 +42,7 @@ export default class ApiHelper implements IApiHelper {
 		try {
 			const banner = await this.fetchData<Banner>("banner");
 			return banner;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Banner. Error: ${e.message}`);
 		}
 	}
@@ -51,7 +51,7 @@ export default class ApiHelper implements IApiHelper {
 		try {
 			const about = await this.fetchData<About>("about");
 			return about;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get About content. Error: ${e.message}`);
 		}
 	}
@@ -60,7 +60,7 @@ export default class ApiHelper implements IApiHelper {
 		try {
 			const menus = await this.fetchData<Menu[]>("menus");
 			return menus;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Menu. Error: ${e.message}`);
 		}
 	}
@@ -71,7 +71,7 @@ export default class ApiHelper implements IApiHelper {
 				`blogs?collectionName=${collectionName}`
 			);
 			return blogs;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Blogs. Error: ${e.message}`);
 		}
 	}
@@ -80,7 +80,7 @@ export default class ApiHelper implements IApiHelper {
 		try {
 			const blog = await this.fetchData<Blog>(`blogs/${id}`);
 			return blog;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Blog. Error: ${e.message}`);
 		}
 	}
@@ -91,7 +91,7 @@ export default class ApiHelper implements IApiHelper {
 				`pageIntro?pageName=${pageName}`
 			);
 			return pageIntro;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get PageIntro. Error: ${e.message}`);
 		}
 	}
@@ -100,7 +100,7 @@ export default class ApiHelper implements IApiHelper {
 		try {
 			const footer = await this.fetchData<Footer>("footer");
 			return footer;
-		} catch (e) {
+		} catch (e: any) {
 			throw new Error(`Failed to get Footer. Error: ${e.message}`);
 		}
 	}

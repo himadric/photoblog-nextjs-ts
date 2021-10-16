@@ -24,8 +24,8 @@ const cacheDuration = 1000 * Number(process.env.CONTENT_CACHE_DURATION);
 const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
 
 const previewOption: boolean =
-	process.env.CONTENTFUL_DELIVERY_API_ACCESS_TOKEN === "false" ||
-	process.env.CONTENTFUL_DELIVERY_API_ACCESS_TOKEN === undefined
+	process.env.CONTENTFUL_PREVIEW_OPTION === "false" ||
+	process.env.CONTENTFUL_PREVIEW_OPTION === undefined
 		? false
 		: true;
 
@@ -43,7 +43,7 @@ function formatDate(datetime: string) {
 	var date = new Date(datetime);
 	return date.toLocaleDateString("en-US", options);
 }
-export default class ContentFulApiHelper implements IApiHelper {
+export default class ContentFulApiFetchHelper implements IApiHelper {
 	private async getFetchOptions(query: string) {
 		const fetchOptions = {
 			method: "POST",

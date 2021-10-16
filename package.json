@@ -10,6 +10,7 @@
     "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@babel/core": "^7.15.0",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-decorators": "^7.14.5",
@@ -21,7 +22,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "form-data": "^4.0.0",
-    "graphql": "^15.5.3",
+    "graphql": "^15.6.1",
     "https-proxy-agent": "^5.0.0",
     "memory-cache": "^0.2.0",
     "next": "11.1.0",

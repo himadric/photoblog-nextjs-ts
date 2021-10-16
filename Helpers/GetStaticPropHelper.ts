@@ -8,7 +8,7 @@ import { container } from "tsyringe";
 import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import AboutPorps from "../models/AboutProps";
-import ApiHelper from "./XEdgeApiHelper";
+import ApiHelper from "./ContentFulApiApolloClientHelper";
 
 container.register("IApiHelper", {
 	useClass: ApiHelper,

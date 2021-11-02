@@ -44,7 +44,7 @@ function formatDate(datetime: string) {
 	var date = new Date(datetime);
 	return date.toLocaleDateString("en-US", options);
 }
-export default class XEdgeApiHelper implements IApiHelper {
+export default class XEdgeApiFetchHelper implements IApiHelper {
 	private async getFetchOptions(query: string) {
 		const fetchOptions = {
 			method: "POST",

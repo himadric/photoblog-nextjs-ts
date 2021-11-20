@@ -2,13 +2,13 @@ import { gql } from "@apollo/client";
 
 export const GET_TOPICS_QUERY = gql`
 	query {
-		allM_Content_6b391 {
+		allM_Content_Topic {
 			results {
-				id
-				_b391_Image
-				_b391_ImageAlt
-				_b391_Link
-				_b391_ButtonText
+				topic_Id
+				topic_Link
+				topic_Image
+				topic_ImageAlt
+				topic_ButtonText
 			}
 		}
 	}
@@ -16,14 +16,14 @@ export const GET_TOPICS_QUERY = gql`
 
 export const GET_BANNER_QUERY = gql`
 	query {
-		allM_Content_d4b32 {
+		allM_Content_Banner {
 			results {
 				id
-				d4b32_Banner_Title
-				d4b32_Banner_Heading
-				d4b32_Banner_Sub_Heading
-				d4b32_Banner_Image
-				d4b32_Banner_Image_Alt
+				banner_Title
+				banner_Heading
+				banner_SubHeadeing
+				banner_Image
+				banner_ImageAlt
 			}
 		}
 	}
@@ -31,12 +31,13 @@ export const GET_BANNER_QUERY = gql`
 
 export const GET_ABOUT_QUERY = gql`
 	query {
-		allM_Content_Blog(where: { content_Name_eq: "About" }) {
+		allM_Content_About {
 			results {
-				blog_Title
-				blog_Body
-				blog_CoverImageLink
-				blog_CoverImageAlt
+				about_Title
+				about_Body
+				about_Image
+				about_ImageAlt
+				about_Link
 			}
 		}
 	}
@@ -44,50 +45,59 @@ export const GET_ABOUT_QUERY = gql`
 
 export const GET_MENU_QUERY = gql`
 	query {
-		allM_Content_851fb {
+		allM_Content_Menu(orderBy: [MENU_ID_ASC]) {
 			results {
-				id
-				_51fb_Parent_Id
-				_51fb_MenuCaption
-				_51fb_MenuLink
+				menu_Id
+				menu_ParentId
+				menu_Caption
+				menu_Link
 			}
 		}
 	}
 `;
 
 export const GET_BLOGIDS_QUERY = gql`
-	query {
-		allM_Content_Blog(where: { blog_Title_eq: "Yosemite" }) {
+	query GetBlogIds($collectionName: String) {
+		allM_ContentCollection(
+			where: { contentCollectionName_eq: $collectionName }
+		) {
 			results {
-				id
+				contentCollectionName
+				contentCollectionToContent {
+					results {
+						id
+					}
+				}
 			}
 		}
 	}
 `;
 
 export const GET_BLOGBYID_QUERY = gql`
-	query GetBlogById($id: String) {
+	query GetBlogById($id: String!) {
 		m_Content_Blog(id: $id) {
 			id
 			blog_Title
 			blog_Quote
 			blog_Body
-			blog_CoverImageLink
-			blog_CoverImageAlt
-			content_PublishedOn
+			blog_Image
+			blog_ImageAlt
 			blog_ReadTime
+			blog_Link
+			content_PublishedOn
 		}
 	}
 `;
 
 export const GET_PAGEINTRO_QUERY = gql`
 	query GetPageIntro($pageName: String) {
-		allM_Content_Blog(where: { content_Name_eq: $pageName }) {
+		allM_Content_PageIntro(where: { content_Name_eq: $pageName }) {
 			results {
 				id
-				content_Name
-				blog_Title
-				blog_Body
+				pageIntro_Id
+				pageIntro_Body
+				pageIntro_Title
+				pageIntro_PageName
 			}
 		}
 	}
@@ -95,16 +105,16 @@ export const GET_PAGEINTRO_QUERY = gql`
 
 export const GET_FOOTER_QUERY = gql`
 	query {
-		allM_Content_13de7 {
+		allM_Content_Footer {
 			results {
 				id
-				_3de7_AboutMeHeading
-				_3de7_AboutMeQuote
-				_3de7_AboutMeImageLink
-				_3de7_Copyright
-				_3de7_SubscriptionHeading
-				_3de7_EmailLabel
-				_3de7_SubscriptionButtonCaption
+				footer_AboutMeHeading
+				footer_AboutMeQuote
+				footer_AboutMeImage
+				footer_Copyright
+				footer_SubscriptionHeading
+				footer_EmailLabel
+				footer_SubscriptionButtonCaption
 			}
 		}
 	}

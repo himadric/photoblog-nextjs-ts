@@ -10,7 +10,7 @@ module.exports = {
     return config
   },
   images: {
-    domains: ['himadri-ch-sandbox.stylelabs.io', 'experienceedgedemo1.stylelabsdemo.com', 'images.ctfassets.net'],
+    domains: ['nishtechxedgesandbox.sitecoresandbox.cloud', 'images.ctfassets.net'],
   },
   reactStrictMode: true,
   sassOptions: {

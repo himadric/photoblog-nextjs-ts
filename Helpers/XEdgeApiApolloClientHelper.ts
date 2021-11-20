@@ -1,4 +1,3 @@
-import { DocumentNode, gql } from "@apollo/client";
 import {
 	GET_TOPICS_QUERY,
 	GET_BANNER_QUERY,
@@ -30,7 +29,7 @@ const apiKEy = previewOption
 	: process.env.XEDGE_DELIVERY_API_KEY;
 
 const fetchUrl = previewOption
-	? `http://experienceedgedemo1b.stylelabsdemo.com/api/graphql/preview/v1`
+	? `https://nishtechxedgesandbox.sitecoresandbox.cloud/api/graphql/preview/v1`
 	: `https://edge-beta.sitecorecloud.io/api/graphql/v1`;
 
 function formatDate(datetime: string) {
@@ -60,15 +59,15 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 	async getTopics(): Promise<Topic[]> {
 		try {
 			const { data } = await client.query({ query: GET_TOPICS_QUERY });
-			const { results } = data.allM_Content_6b391;
+			const { results } = data.allM_Content_Topic;
 			return results.map(
 				(topic: any) =>
 					({
-						id: topic.id,
-						image: topic._b391_Image,
-						imageAlt: topic._b391_ImageAlt,
-						link: topic._b391_Link,
-						buttonText: topic._b391_ButtonText,
+						id: topic.topic_Image,
+						image: topic.topic_Image,
+						imageAlt: topic.topic_ImageAlt,
+						link: topic.topic_Link,
+						buttonText: topic.topic_ButtonText,
 					} as Topic)
 			);
 		} catch (e: any) {
@@ -79,14 +78,14 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 	async getBanner(): Promise<Banner> {
 		try {
 			const { data } = await client.query({ query: GET_BANNER_QUERY });
-			const { results } = data.allM_Content_d4b32;
+			const { results } = data.allM_Content_Banner;
 			const item = results[0];
 			return {
-				title: item.d4b32_Banner_Title,
-				heading: item.d4b32_Banner_Heading,
-				subHeading: item.d4b32_Banner_Sub_Heading,
-				image: item.d4b32_Banner_Image,
-				imageAlt: item.d4b32_Banner_Image_Alt,
+				title: item.banner_Title,
+				heading: item.banner_Heading,
+				subHeading: item.banner_SubHeadeing,
+				image: item.banner_Image,
+				imageAlt: item.banner_ImageAlt,
 			} as Banner;
 		} catch (e: any) {
 			throw new Error(`Failed to get Banner. Error: ${e.message}`);
@@ -96,14 +95,14 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 	async getAboutContent(): Promise<About> {
 		try {
 			const { data } = await client.query({ query: GET_ABOUT_QUERY });
-			const { results } = data.allM_Content_Blog;
+			const { results } = data.allM_Content_About;
 			const item = results[0];
 			return {
-				title: item.blog_Title,
-				body: item.blog_Body,
-				image: item.blog_CoverImageLink,
-				imageAlt: item.blog_CoverImageAlt,
-				link: "/about",
+				title: item.about_Title,
+				body: item.about_Body,
+				image: item.about_Image,
+				imageAlt: item.about_ImageAlt,
+				link: item.about_Link,
 			};
 		} catch (e: any) {
 			throw new Error(`Failed to get About content. Error: ${e.message}`);
@@ -113,14 +112,14 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 	async getMainMenuItems(): Promise<Menu[]> {
 		try {
 			const { data } = await client.query({ query: GET_MENU_QUERY });
-			const { results } = data.allM_Content_851fb;
+			const { results } = data.allM_Content_Menu;
 			return results.map(
 				(menuItem: any) =>
 					({
-						id: menuItem.id,
-						parentId: menuItem._51fb_Parent_Id,
-						menuCaption: menuItem._51fb_MenuCaption,
-						menuLink: menuItem._51fb_MenuLink,
+						id: menuItem.menu_Id,
+						parentId: menuItem.menu_ParentId,
+						menuCaption: menuItem.menu_Caption,
+						menuLink: menuItem.menu_Link,
 					} as Menu)
 			);
 		} catch (e: any) {
@@ -130,15 +129,16 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 
 	async getBlogs(collectionName: string): Promise<Blog[]> {
 		try {
-			const { data } = await client.query({ query: GET_BLOGIDS_QUERY });
-			const { results } = data.allM_Content_Blog;
+			const { data } = await client.query({
+				query: GET_BLOGIDS_QUERY,
+				variables: { collectionName },
+			});
+			const { results } =
+				data.allM_ContentCollection.results[0].contentCollectionToContent;
 			return await Promise.all(
 				results.map(
 					async (item: any) =>
-						(await this.getBlogByCollectionAndId(
-							collectionName,
-							item.id as string
-						)) as Blog
+						(await this.getBlogById(item.id as string)) as Blog
 				)
 			);
 		} catch (e: any) {
@@ -146,10 +146,7 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 		}
 	}
 
-	private async getBlogByCollectionAndId(
-		collectionName: string,
-		id: string
-	): Promise<Blog> {
+	private async getBlogByCollectionAndId(id: string): Promise<Blog> {
 		try {
 			const { data } = await client.query({
 				query: GET_BLOGBYID_QUERY,
@@ -157,11 +154,11 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 			});
 			const blog = {
 				id: data.m_Content_Blog.id,
-				image: data.m_Content_Blog.blog_CoverImageLink,
-				imageAlt: data.m_Content_Blog.blog_CoverImageAlt,
+				image: data.m_Content_Blog.blog_Image,
+				imageAlt: data.m_Content_Blog.blog_ImageAlt,
 				publishDate: formatDate(data.m_Content_Blog.content_PublishedOn),
 				readtime: data.m_Content_Blog.blog_ReadTime,
-				link: `/${collectionName.toLowerCase()}/${id}`,
+				link: `${data.m_Content_Blog.blog_Link}/${id}`,
 				title: data.m_Content_Blog.blog_Title,
 				shortDescription: data.m_Content_Blog.blog_Quote,
 				body: data.m_Content_Blog.blog_Body,
@@ -183,11 +180,11 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 			});
 			const blog = {
 				id: data.m_Content_Blog.id,
-				image: data.m_Content_Blog.blog_CoverImageLink,
-				imageAlt: data.m_Content_Blog.blog_CoverImageAlt,
+				image: data.m_Content_Blog.blog_Image,
+				imageAlt: data.m_Content_Blog.blog_ImageAlt,
 				publishDate: formatDate(data.m_Content_Blog.content_PublishedOn),
 				readtime: data.m_Content_Blog.blog_ReadTime,
-				link: "/photography",
+				link: `${data.m_Content_Blog.blog_Link}/${id}`,
 				title: data.m_Content_Blog.blog_Title,
 				shortDescription: data.m_Content_Blog.blog_Quote,
 				body: data.m_Content_Blog.blog_Body,
@@ -207,13 +204,13 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 				query: GET_PAGEINTRO_QUERY,
 				variables: { pageName },
 			});
-			const { results } = data.allM_Content_Blog;
+			const { results } = data.allM_Content_PageIntro;
 			const item = results[0];
 			return {
 				id: item.id,
-				pageName: item.content_Name,
-				title: item.blog_Title,
-				body: item.blog_Body,
+				pageName: item.pageIntro_PageName,
+				title: item.pageIntro_Title,
+				body: item.pageIntro_Body,
 			} as PageIntro;
 		} catch (e: any) {
 			throw new Error(`Failed to get PageIntro. Error: ${e.message}`);
@@ -223,16 +220,16 @@ export default class XEdgeApiApolloClientHelper implements IApiHelper {
 	async getFooter(): Promise<Footer> {
 		try {
 			const { data } = await client.query({ query: GET_FOOTER_QUERY });
-			const { results } = data.allM_Content_13de7;
+			const { results } = data.allM_Content_Footer;
 			const item = results[0];
 			return {
-				aboutMeHeading: item._3de7_AboutMeHeading,
-				aboutMeQuote: item._3de7_AboutMeQuote,
-				aboutMeImageLink: item._3de7_AboutMeImageLink,
-				copyright: item._3de7_Copyright,
-				subscriptionHeading: item._3de7_SubscriptionHeading,
-				subscriptionButtonCaption: item._3de7_SubscriptionButtonCaption,
-				emailLabel: item._3de7_EmailLabel,
+				aboutMeHeading: item.footer_AboutMeHeading,
+				aboutMeQuote: item.footer_AboutMeQuote,
+				aboutMeImageLink: item.footer_AboutMeImage,
+				copyright: item.footer_Copyright,
+				subscriptionHeading: item.footer_SubscriptionHeading,
+				subscriptionButtonCaption: item.footer_SubscriptionButtonCaption,
+				emailLabel: item.footer_EmailLabel,
 			} as Footer;
 		} catch (e: any) {
 			throw new Error(`Failed to get Footer. Error: ${e.message}`);

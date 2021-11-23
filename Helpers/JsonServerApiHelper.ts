@@ -22,7 +22,7 @@ export default class ApiHelper implements IApiHelper {
 		const fetchOptions = {
 			method: "GET",
 			//Uncomment below line to see API requestion in Fiddler
-			agent: HttpsProxyAgent("http://127.0.0.1:8888"),
+			//agent: HttpsProxyAgent("http://127.0.0.1:8888"),
 			headers: {
 				"Content-Type": "application/json",
 			},

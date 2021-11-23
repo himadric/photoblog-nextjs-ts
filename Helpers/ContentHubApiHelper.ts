@@ -162,7 +162,7 @@ export default class ContentHubApiHelper implements IApiHelper {
 			var propertyQueryFilter = new PropertyQueryFilter({
 				operator: ComparisonOperator.Equals,
 				property: "Content.Name",
-				value: "HomeBanner",
+				value: "Banner",
 				dataType: FilterDataType.String,
 			});
 
@@ -174,11 +174,11 @@ export default class ContentHubApiHelper implements IApiHelper {
 			).querying.singleAsync(query);
 			await sleep(sleepInterval);
 			banner = {
-				title: content?.getPropertyValue("d4b32_Banner_Title"),
-				heading: content?.getPropertyValue("d4b32_Banner_Heading"),
-				subHeading: content?.getPropertyValue("d4b32_Banner_Sub_Heading"),
-				image: content?.getPropertyValue("d4b32_Banner_Image"),
-				imageAlt: content?.getPropertyValue("d4b32_Banner_Image_Alt"),
+				title: content?.getPropertyValue("Banner_Title"),
+				heading: content?.getPropertyValue("Banner_Heading"),
+				subHeading: content?.getPropertyValue("Banner_SubHeadeing"),
+				image: content?.getPropertyValue("Banner_Image"),
+				imageAlt: content?.getPropertyValue("Banner_ImageAlt"),
 			};
 			cacheData.put(getBannerContentCacheKey, banner, cacheDuration);
 			return banner;
@@ -253,10 +253,10 @@ export default class ContentHubApiHelper implements IApiHelper {
 			await sleep(sleepInterval);
 			let topicCards = relation.items.map((topicCard) => ({
 				id: topicCard.identifier,
-				image: topicCard?.getPropertyValue("6b391_Image"),
-				imageAlt: topicCard?.getPropertyValue("6b391_ImageAlt"),
-				link: topicCard?.getPropertyValue("6b391_Link"),
-				buttonText: topicCard?.getPropertyValue("6b391_ButtonText"),
+				image: topicCard?.getPropertyValue("Topic_Image"),
+				imageAlt: topicCard?.getPropertyValue("Topic_ImageAlt"),
+				link: topicCard?.getPropertyValue("Topic_Link"),
+				buttonText: topicCard?.getPropertyValue("Topic_ButtonText"),
 			}));
 			cacheData.put(getTopicCardsCacheKey, topicCards, cacheDuration);
 			return topicCards;
@@ -284,9 +284,9 @@ export default class ContentHubApiHelper implements IApiHelper {
 			).querying.singleAsync(query);
 			await sleep(sleepInterval);
 			about = {
-				title: content?.getPropertyValue("Blog_Title"),
-				body: content?.getPropertyValue("Blog_Body"),
-				image: content?.getPropertyValue("CoverImageLink"),
+				title: content?.getPropertyValue("About_Title"),
+				body: content?.getPropertyValue("About_Body"),
+				image: content?.getPropertyValue("About_Image"),
 			};
 			cacheData.put(getAboutContentCacheKey, about, cacheDuration);
 			return about;
@@ -333,13 +333,13 @@ export default class ContentHubApiHelper implements IApiHelper {
 				.map(
 					(mainMenuItem) =>
 						({
-							id: mainMenuItem.identifier,
-							parentId: mainMenuItem?.getPropertyValue("851fb_Parent_Id"),
-							menuCaption: mainMenuItem?.getPropertyValue("851fb_MenuCaption"),
-							menuLink: mainMenuItem?.getPropertyValue("851fb_MenuLink"),
+							id: mainMenuItem?.getPropertyValue("Menu_Id"),
+							parentId: mainMenuItem?.getPropertyValue("Menu_ParentId"),
+							menuCaption: mainMenuItem?.getPropertyValue("Menu_Caption"),
+							menuLink: mainMenuItem?.getPropertyValue("Menu_Link"),
 						} as Menu)
 				)
-				.sort((a, b) => (a.id < b.id ? 1 : -1));
+				.sort((a, b) => (a.id > b.id ? 1 : -1));
 			cacheData.put(getMainMenuItemsCacheKey, menuItems, cacheDuration);
 		}
 		return menuItems;
@@ -391,13 +391,13 @@ export default class ContentHubApiHelper implements IApiHelper {
 			blogs = relation.items.map((blog) => ({
 				id: blog.id,
 				collectionName: contentCollectionName,
-				image: blog.getPropertyValue("Blog_CoverImageLink"),
-				imageAlt: blog.getPropertyValue("Blog_CoverImageAlt"),
+				image: blog.getPropertyValue("Blog_Image"),
+				imageAlt: blog.getPropertyValue("Blog_ImageAlt"),
 				publishDate: formatDate(
 					blog.getPropertyValue("Content.PublishedOn") as string
 				),
 				readtime: blog.getPropertyValue("Blog_ReadTime"),
-				link: ["/", contentCollectionName.toLowerCase(), "/", blog.id].join(""),
+				link: [blog.getPropertyValue("Blog_Link"), "/", blog.id].join(""),
 				title: blog.getPropertyValue("Blog_Title"),
 				shortDescription: blog.getPropertyValue("Blog_Quote"),
 				body: blog.getPropertyValue("Blog_Body"),
@@ -435,8 +435,8 @@ export default class ContentHubApiHelper implements IApiHelper {
 			pageIntro = {
 				id: content?.id,
 				pageName: contentName,
-				title: content?.getPropertyValue("Blog_Title"),
-				body: content?.getPropertyValue("Blog_Body"),
+				title: content?.getPropertyValue("PageIntro_Title"),
+				body: content?.getPropertyValue("PageIntro_Body"),
 			};
 			cacheData.put(cacheKey, pageIntro, cacheDuration);
 			return pageIntro;
@@ -456,8 +456,8 @@ export default class ContentHubApiHelper implements IApiHelper {
 			await sleep(sleepInterval);
 			blog = {
 				id: entity?.id,
-				image: entity?.getPropertyValue("Blog_CoverImageLink"),
-				imageAlt: entity?.getPropertyValue("Blog_CoverImageAlt"),
+				image: entity?.getPropertyValue("Blog_Image"),
+				imageAlt: entity?.getPropertyValue("Blog_ImageAlt"),
 				publishDate: formatDate(
 					entity?.getPropertyValue("Content.PublishedOn") as string
 				),
@@ -496,18 +496,16 @@ export default class ContentHubApiHelper implements IApiHelper {
 			).querying.singleAsync(query);
 			await sleep(sleepInterval);
 			footer = {
-				aboutMeHeading: footerEntity?.getPropertyValue("13de7_AboutMeHeading"),
-				aboutMeQuote: footerEntity?.getPropertyValue("13de7_AboutMeQuote"),
-				aboutMeImageLink: footerEntity?.getPropertyValue(
-					"13de7_AboutMeImageLink"
-				),
-				copyright: footerEntity?.getPropertyValue("13de7_Copyright"),
+				aboutMeHeading: footerEntity?.getPropertyValue("Footer_AboutMeHeading"),
+				aboutMeQuote: footerEntity?.getPropertyValue("Footer_AboutMeQuote"),
+				aboutMeImageLink: footerEntity?.getPropertyValue("Footer_AboutMeImage"),
+				copyright: footerEntity?.getPropertyValue("Footer_Copyright"),
 				subscriptionHeading: footerEntity?.getPropertyValue(
-					"13de7_SubscriptionHeading"
+					"Footer_SubscriptionHeading"
 				),
-				emailLabel: footerEntity?.getPropertyValue("13de7_EmailLabel"),
+				emailLabel: footerEntity?.getPropertyValue("Footer_EmailLabel"),
 				subscriptionButtonCaption: footerEntity?.getPropertyValue(
-					"13de7_SubscriptionButtonCaption"
+					"Footer_SubscriptionButtonCaption"
 				),
 			};
 			cacheData.put(getFooterCacheKey, footer, cacheDuration);
